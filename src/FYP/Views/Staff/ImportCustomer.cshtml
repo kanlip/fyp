@@ -1,0 +1,72 @@
+﻿@using FYP.Models
+@model Customer
+
+    @{
+        ViewBag.Title = "Upload Customer";
+    }
+    <link href="~/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+    <script src="~/lib/moment/min/moment.min.js"></script>
+    <script src="~/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+    <style>
+        h2 {
+            padding: 100px 25px;
+            margin-left: 20%;
+            font-family: 'Zilla Slab', serif;
+            font-size: 35px;
+        }
+        p{
+            font-size:20px;
+            padding-left:300px;
+            padding-top:100px
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Zilla+Slab" rel="stylesheet">
+    <h2>Upload Customer</h2><br />
+
+@if (TempData["Msg"] != null)
+{
+    <div class="container ">
+        <div class="alert alert-danger fade in">
+            @TempData["Msg"]
+        </div>
+    </div>
+}
+@if (TempData["MsgS"] != null)
+{
+    <div class="container ">
+        <div class="alert alert-success fade in">
+            @TempData["MsgS"]
+        </div>
+    </div>
+}
+    <div class="row">
+        <div class="col-sm-10">
+            <form asp-controller="Staff" asp-action="ImportCustomer"
+                  method="post" enctype="multipart/form-data"
+                  class="form-horizontal" role="form">
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label"> Excel File:</label>
+                    <div class="col-sm-4">
+
+                        <input type="file" name="file" class="filestyle" data-buttonName="btn-primary">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <input type="submit" value="Import" class="btn btn-primary" />
+                        <input type="button" class="btn btn-default" value="Cancel"
+                               onclick="javascript:document.location.href='@Url.Action("Index")'" />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-12">
+            <p>Upload Excel format<span> **Please use the follow format</span></p>
+            <div class="container">
+                <img src="~/images/formatForCust.PNG" class="img-responsive" style="margin-left:15%" alt="Format">
+            </div>
+        </div>
+    </div>
+

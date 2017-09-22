@@ -1,0 +1,117 @@
+﻿@model Appointment
+@using FYP.Models
+
+
+@{
+    ViewBag.Title = "Update Appointment";
+}
+
+<style>
+    h2 {
+        padding-top: 50px;
+    }
+</style>
+
+<div class="container">
+    <h2>Update Appointment</h2>
+
+    <div class="row">
+        <div class="col-sm-5">
+            <form asp-controller="Appointment" asp-action="Update"
+                  class="form-horizontal" role="form">
+                <div class="form-horizontal">
+                    
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" asp-for="AppId"> Appointment : </label>
+                            <div class="col-sm-8">
+                                <input asp-for="AppId" class="form-control" readonly="readonly" />
+                            </div>
+                            <div class="has-error">
+                                <span asp-validation-for="AppId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    @*
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" asp-for="CusId">Customer Id : </label>
+                            <div class="col-sm-8">
+                                <input asp-for="CusId" class="form-control" readonly="readonly" />
+                            </div>
+                            <div class="has-error">
+                                <span asp-validation-for="CusId" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-sm-4" asp-for="StaffId">Staff Id : </label>
+                            <div class="col-sm-8">
+                                <input asp-for="StaffId" class="form-control" readonly="readonly" />
+                            </div>
+                            <div class="has-error">
+                                <span asp-validation-for="StaffId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    *@
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" asp-for="AppTitle">Title : </label>
+                        <div class="col-sm-8">
+                            <input asp-for="AppTitle" class="form-control" />
+                        </div>
+                        <div class="has-error">
+                            <span asp-validation-for="AppTitle" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="AppDate" class="col-sm-4 control-label">Date</label>
+                        <div class='input-group date col-sm-7'>
+                            <div class='input-group date col-sm-12' id='BsDateTimePicker1' style="margin-left:15px">
+                                <input class="form-control" asp-for="AppDate" id="TxtApptDate" value="@String.Format("{0:dd-MM-yyyy}",DateTime.Today)" />
+
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" asp-for="AppDetail">Details : </label>
+                        <div class="col-sm-8">
+                            <input asp-for="AppDetail" class="form-control" />
+                        </div>
+                        <div class="has-error">
+                            <span asp-validation-for="AppDetail" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-4" asp-for="AppColor">Status : </label>
+                        <div class="col-sm-8">
+                            <select class="form-control" col-sm-8 asp-for="AppColor">
+                                <option value="Chartreuse">A - Accept</option>
+                                <option value="red">R - Reject</option>
+                                <option value="yellow">P - Pending/Resechdule</option>
+                                <option value="cyan">D - Done</option>
+                            </select>
+                        </div>
+                        <div class="has-error">
+                            <span asp-validation-for="AppColor" class="text-danger"></span>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                            <input type="submit" value="Update" class="btn btn-default" />
+                            <input type="button" value="Cancel" onclick="location.href='@Url.Action("Index","Appointment")';" class="btn btn-default" />
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

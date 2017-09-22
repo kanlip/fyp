@@ -1,0 +1,67 @@
+﻿@using FYP.Models
+@model List<CorporateProfile>
+
+@{
+    ViewBag.Title = "Corporate Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<style>
+    h2 {
+        padding: 100px 25px;
+    }
+</style>
+
+
+
+<h2 style="text-align:center">Corporate Profile</h2>
+
+@if (TempData["Msg"] != null)
+{
+    <div class="container ">
+        <div class="alert alert-danger fade in">
+            @TempData["Msg"]
+        </div>
+    </div>
+}
+@if (TempData["MsgS"] != null)
+{
+    <div class="container ">
+        <div class="alert alert-success fade in">
+            @TempData["MsgS"]
+        </div>
+    </div>
+}
+<div>
+    <div>
+        <table class="table table-bordered table-condensed table-hover table-striped" style="width:70%;margin:auto">
+            <tr>
+                <th>Name</th>
+                <th>Services</th>
+                <th>About Us</th>
+                <th>Address</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Defination</th>
+                <th>Vision</th>
+                <th>Action</th>
+            </tr>
+            @foreach (CorporateProfile profile in Model)
+            {
+                <tr>
+                    <td>@profile.Name</td>
+                    <td>@profile.Services</td>
+                    <td>@profile.AboutUs</td>
+                    <td>@profile.Address</td>
+                    <td>@profile.Contact</td>
+                    <td>@profile.Email</td>
+                    <td>@profile.Defination</td>
+                    <td>@profile.Vision</td>
+                    <td>
+                        <a asp-controller="Administrator" asp-action="Edit" asp-route-id="@profile.Cpid" style="font-size:30px;color:cornflowerblue" class="fa fa-edit"></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

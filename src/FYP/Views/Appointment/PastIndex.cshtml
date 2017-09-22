@@ -1,0 +1,54 @@
+﻿@model FYP.Models.ViewModel
+
+@{
+    ViewBag.Title = "All Appointments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+}
+
+<style>
+    h2 {
+        padding-top: 50px;
+    }
+</style>
+
+
+<div class="container">
+    <h2>Finished Appointments</h2>
+    <table class="table table-bordered table-condensed table-hover table-striped">
+        <tr>
+            <th>Appointment Id</th>
+            <th>Customer Name</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Action</th>
+            <th>Testing</th>
+
+        </tr>
+
+        @foreach (var appt in Model.Appointments)
+        {
+
+            @if (appt.AppColor == "cyan")
+            {
+                <tr>
+                    <td>@appt.CusId</td>
+                    <td>@appt.Cus.Name</td>
+                    <td>@String.Format("{0:dd/MM/yyyy hh:mm}", appt.AppDate)</td>
+
+                    <td style="background-color:#25eaea;"><span class="glyphicon glyphicon-check"></span></td>
+
+                    
+                    <td><a asp-controller="Appointment" asp-action="ViewFeedBack" asp-route-id="@appt.CusId"><span class="glyphicon glyphicon-list-alt"></span> View Feedback</a></td>
+
+
+                    <td><a asp-controller="Appointment" asp-action="Update" asp-route-id="@appt.AppId"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+
+                </tr>
+            }
+        }
+    </table>
+
+</div>
+

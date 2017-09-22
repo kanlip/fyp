@@ -1,0 +1,250 @@
+﻿@model FYP.Models.ViewModel
+
+
+@{
+    ViewBag.Title = "All Appointments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section ScriptSection{
+
+}
+
+<style>
+    h2 {
+    padding-top:50px;
+    }
+</style>
+
+
+
+
+
+<script>
+        @*
+        $(document).ready(function () {
+            //alert("test");
+            var events = [];
+
+
+            $('#calendar').fullCalendar({
+                theme: true,
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+                eventClick: function () {
+                    //alert('a day has been clicked!');
+                },
+                defaultView: 'month',
+                editable: false,
+                selectable: true,
+                slotMinutes: 60,
+                events: events
+            });
+
+            $.ajax({
+                type: "GET",
+                url: "/Appointment/GetEvents",
+                success: function (data) {
+                    $.each(data, function (i, v) {
+                        //alert(v.subject);
+                        var event = { id: v.eventId, title: v.subject, start: moment(v.start)};
+                        $('#calendar').fullCalendar('renderEvent', event, true);
+                        //events.push({
+                        //    title: v.subject,
+                        //    description: v.description,
+                        //    start: new Date(), //moment(v.start),
+                        //    //end: v.End != null ? moment(v.end) : null,
+                        //    color: v.themeColor,
+                        //    allDay: v.isFullDay
+                        //});
+                    })
+
+                },
+                error: function (error) {
+                    alert('Cannot work');
+                }
+            });
+
+                var event = { id: 1, title: 'New event', start: new Date() };
+                $('#calendar').fullCalendar('renderEvent', event, true);
+
+        });
+
+        *@
+
+
+
+    // on top is the perfect one
+
+    //$(document).ready(function () {
+    //    $('#calendar').fullCalendar({
+    //        theme: true,
+    //        header: {
+    //            left: 'prev,next today',
+    //            center: 'title',
+    //            right: 'month,agendaWeek,agendaDay'
+    //        },
+    //        eventClick: function () {
+    //            alert('a day has been clicked!');
+    //        },
+    //        defaultView: 'month',
+    //        editable: true,
+    //        selectable: true,
+    //        editable: true,
+    //        slotMinutes: 60,
+    //        events: [
+    //        {
+    //            title: 'Appointment 1',
+    //            start: '2017-05-31T10:00:00',
+    //        }
+    //        ]
+    //    });
+
+    //    var event = { id: 1, title: 'New event', start: new Date() };
+    //    $('#calendar').fullCalendar('renderEvent', event, true);
+    //});
+    $(document).ready(function () {
+        //alert("test");
+        var appointments = [];
+
+
+        $('#calendar').fullCalendar({
+            theme: true,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,agendaDay'
+            },
+            eventClick: function () {
+                //alert('a day has been clicked!');
+            },
+            defaultView: 'month',
+            editable: false,
+            selectable: true,
+            slotMinutes: 60,
+            events: appointments,
+        });
+
+        $.ajax({
+            type: "GET",
+            url: "/Appointment/GetEvents",
+            success: function (data) {
+                $.each(data, function (i, a) {
+                    var appt = { id: a.appId, title: a.appTitle, start: moment(a.appDate), color: a.appColor, textColor: 'black'};
+                    $('#calendar').fullCalendar('renderEvent', appt, true);
+                    //events.push({
+                    //    title: v.subject,
+                    //    description: v.description,
+                    //    start: new Date(), //moment(v.start),
+                    //    //end: v.End != null ? moment(v.end) : null,
+                    //    color: v.themeColor,
+                    //    allDay: v.isFullDay
+                    //});
+                })
+
+            },
+            error: function (error) {
+                alert('Cannot work');
+            },
+            
+        });
+    });
+
+</script>
+
+<div class="container"  style="height:30%">
+    <h2>All Upcoming Appointments</h2>
+    @if (TempData["Msg"] != null)
+    {
+        <div class="container ">
+            <div class="alert alert-danger fade in">
+                @TempData["Msg"]
+            </div>
+        </div>
+    }
+    @if (TempData["MsgS"] != null)
+    {
+        <div class="container ">
+            <div class="alert alert-success fade in">
+                @TempData["MsgS"]
+            </div>
+        </div>
+    }
+    <span style="color:red">@TempData["Msg"]</span><br />
+
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1"><span>Appointment View</span></a></li>
+            <li><a href="#tabs-2"><span>Calendar View</span></a></li>
+        </ul>
+
+
+        <div id="tabs-1">
+
+            <table class="table table-bordered table-condensed table-hover table-striped">
+                <tr>
+                    <th>Customer Id</th>
+                    <th>Customer Name</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                    <th>Detail</th> 
+                    <th>Action</th>
+                </tr>
+                @foreach (var appt in Model.Appointments)
+            {
+
+                    @if (appt.AppColor != "cyan")
+                {
+                        <tr>
+                            <td>@appt.CusId</td>
+                            <td><a asp-controller="Appointment" asp-action="ViewCustomer" asp-route-id="@appt.CusId"> @appt.Cus.Name</a></td>
+
+                            <td>@String.Format("{0:dd/MM/yyyy}", appt.AppDate)</td>
+                            <td>@String.Format("{0: hh:mm tt}", appt.AppDate)</td>
+
+                            @if (appt.AppColor == "Chartreuse")
+                            {
+                                <td style="background-color:#58bd91;"><span class="glyphicon glyphicon-ok"></span></td>
+                            }
+
+                            else if (appt.AppColor == "red")
+                            {
+                                <td style="background-color:#ee3427;"><span class="glyphicon glyphicon-remove-sign"></span></td>
+                            }
+
+                            else if (appt.AppColor == "yellow")
+                            {
+                                <td style="background-color:yellow;"> <b>P </b></td>
+                            }
+
+                            <td>@appt.AppDetail</td>
+
+                            @*<td><a asp-controller="Appointment" asp-action="Update" asp-route-id="@appt.AppId"><span style="font-size:30px" class="glyphicon glyphicon-edit"></span> Edit</a></td>*@
+                            <td><a asp-controller="Appointment" asp-action="Update" asp-route-id="@appt.AppId"><span class="glyphicon glyphicon-edit"></span> Edit</a></td>
+                        </tr>
+                    }
+
+                }
+            </table>
+        </div>
+
+        <div id="tabs-2">
+
+            <div class="container">
+                <h4><b><u>Appointment Status</u></b></h4>
+                
+                <img src="~/images/color.PNG" class="img-responsive" style="margin-left:-2%" alt="Format">
+            </div>
+
+            <div id="calendar">
+            </div>
+        </div>
+
+    </div>
+</div>
+
+

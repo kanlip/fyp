@@ -1,0 +1,155 @@
+﻿@using FYP.Models
+@model CorporateProfile
+
+@{
+    ViewBag.Title = "Update Corporate Profile";
+}
+
+<h2>Update Corporate Profile</h2>
+
+<style>
+    h2 {
+        padding: 100px 25px;
+        margin-left: 20%;
+    }
+</style>
+
+<div class="row">
+
+    <form asp-controller="Administrator" asp-action="Edit"
+          method="post" enctype="multipart/form-data"
+          class="form-horizontal" role="form">
+        <div class="col-sm-8">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Cpid">Profile Id: </label>
+                    <div class="col-sm-4">
+                        <input asp-for="Cpid" class="form-control " readonly />
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Cpid" class="text-danger"></span>
+                    </div>
+                </div>
+                <!--for Name-->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Name"> Name:</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" asp-for="Name" />
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Defination"> Defination : </label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" asp-for="Defination"></textarea>
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Defination" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <!--VISION-->
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Vision"> Vision:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" asp-for="Vision"></textarea>
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Vision" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Contact"> Contact:</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" asp-for="Contact" />
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Contact" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Address"> Address:</label>
+                    <div class="col-sm-7">
+                        <input class="form-control" asp-for="Address" />
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="AboutUs"> About Us:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" asp-for="AboutUs"></textarea>
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="AboutUs" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Services"> Services:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" asp-for="Services"></textarea>
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Services" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Email"> Email:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" asp-for="Email"></textarea>
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Fblink"> Facebook Link:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" asp-for="Fblink"></textarea>
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Fblink" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Twitlink"> Twitter Link:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" asp-for="Twitlink"></textarea>
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Twitlink" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-4 control-label" asp-for="Linkinlink"> Linkedin link:</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" asp-for="Linkinlink"></textarea>
+                    </div>
+                    <div class="has-error">
+                        <span asp-validation-for="Linkinlink" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-10">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <input type="button" class="btn btn-default" value="Cancel"
+                               onclick="javascript:document.location.href='@Url.Action("Index")'" />
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

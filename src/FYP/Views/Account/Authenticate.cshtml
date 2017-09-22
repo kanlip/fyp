@@ -1,0 +1,53 @@
+﻿
+
+@model Login
+@{
+ 
+
+}
+<style>
+    h2 {
+        padding: 100px 25px;
+
+    }
+</style>
+
+<form class="form-horizontal" asp-controller="Account" asp-action="Authenticate">
+    @if (TempData["msg"] != null)
+    {
+        <div class="container ">
+            <div class="alert alert-danger fade in">
+                @TempData["msg"]
+            </div>
+        </div>
+    }
+
+
+    <div class="container">
+        <h2 class="form-signin-heading">Please Log In</h2>
+        <div class="col-sm-8">
+            <label asp-for="UserId" class="control-label">User ID :</label>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                <input asp-for="UserId" class="form-control" placeholder="Email" />
+            </div>
+            <div class="has-error">
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <label asp-for="Password" class="control-label">Password :</label>
+            <div class="form-group input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                <input asp-for="Password" class="form-control" placeholder="Password" />
+            </div>
+            <div class="has-error">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group" style="padding-top:20px">
+                <input type="submit" class="btn btn-primary" style="background-color:#28B78D;border-color:none;" value="Sign In" />
+                <span style="padding-left:10px"></span>
+                <input type="button" class="btn btn-default" value="Cancel"
+                       onclick="javascript:document.location.href='@Url.Action("Index","Home")'" />
+            </div>
+        </div>
+    </div>
+</form>

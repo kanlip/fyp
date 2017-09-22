@@ -1,0 +1,354 @@
+﻿@using FYP.Models
+@model List<CorporateProfile>
+@{
+    ViewBag.Title = "";
+}
+
+<style>
+    footer .glyphicon {
+        font-size: 10px;
+        margin-bottom: 10px;
+        color: #58bd91;
+    }
+
+
+    a {
+        color: #58bd91;
+    }
+
+    .jumbotron {
+        background-color: #28B78D;
+        color: #fff;
+        padding: 100px 25px;
+        font-family: 'Fresca', sans-serif;
+    }
+
+    body {
+        font: 400 15px Lato, sans-serif;
+        line-height: 1.8;
+        color: #818181;
+    }
+
+
+
+    .footer-distributed {
+        /*background-color: #292c2f;*/
+        background-color: #243743;
+        box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+        box-sizing: border-box;
+        width: 100%;
+        text-align: left;
+        font: bold 16px sans-serif;
+        padding: 55px 50px;
+        margin-top: 80px;
+    }
+
+        .footer-distributed .footer-left,
+        .footer-distributed .footer-center,
+        .footer-distributed .footer-right {
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        /* Footer left */
+
+        .footer-distributed .footer-left {
+            width: 40%;
+        }
+
+        /* The company logo */
+
+        .footer-distributed h3 {
+            color: #ffffff;
+            font: normal 36px 'Cookie', cursive;
+            margin: 0;
+        }
+
+            .footer-distributed h3 span {
+                /* color: #5383d3;*/
+                color: #28B78D;
+            }
+
+        /* Footer links */
+
+        .footer-distributed .footer-links {
+            color: #ffffff;
+            margin: 20px 0 12px;
+            padding: 0;
+        }
+
+            .footer-distributed .footer-links a {
+                display: inline-block;
+                line-height: 1.8;
+                text-decoration: none;
+                color: inherit;
+            }
+
+        .footer-distributed .footer-company-name {
+            color: #8f9296;
+            font-size: 14px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+        /* Footer Center */
+
+        .footer-distributed .footer-center {
+            width: 35%;
+        }
+
+            .footer-distributed .footer-center i {
+                background-color: #243743;
+                color: #ffffff;
+                font-size: 25px;
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                text-align: center;
+                line-height: 42px;
+                margin: 10px 15px;
+                vertical-align: middle;
+            }
+
+                .footer-distributed .footer-center i.fa-envelope {
+                    font-size: 17px;
+                    line-height: 38px;
+                }
+
+            .footer-distributed .footer-center p {
+                display: inline-block;
+                color: #ffffff;
+                vertical-align: middle;
+                margin: 0;
+            }
+
+                .footer-distributed .footer-center p span {
+                    display: block;
+                    font-weight: normal;
+                    font-size: 14px;
+                    line-height: 2;
+                }
+
+                .footer-distributed .footer-center p a {
+                    color: #5383d3;
+                    text-decoration: none;
+                }
+
+
+        /* Footer Right */
+
+        .footer-distributed .footer-right {
+            width: 20%;
+        }
+
+        .footer-distributed .footer-company-about {
+            line-height: 20px;
+            color: #92999f;
+            font-size: 13px;
+            font-weight: normal;
+            margin: 0;
+        }
+
+            .footer-distributed .footer-company-about span {
+                display: block;
+                color: #ffffff;
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 20px;
+            }
+
+        .footer-distributed .footer-icons {
+            margin-top: 25px;
+        }
+
+            .footer-distributed .footer-icons a {
+                font-size: 20px;
+                color: #ffffff;
+                background: none repeat scroll 0 0 #243743;
+                border: 2px solid #B5B5B5;
+                -webkit-border-radius: 50%;
+                -moz-border-radius: 50%;
+                border-radius: 50%;
+                float: left;
+                height: 36px;
+                line-height: 36px;
+                margin: 0 15px 0 0;
+                padding: 0;
+                text-align: center;
+                width: 36px;
+                transition: all 0.5s ease 0s;
+                -moz-transition: all 0.5s ease 0s;
+                -webkit-transition: all 0.5s ease 0s;
+                -o-transition: all 0.5s ease 0s;
+            }
+
+                .footer-distributed .footer-icons a:hover {
+                    transform: scale(1.15) rotate(360deg);
+                    -webkit-transform: scale(1.1) rotate(360deg);
+                    -moz-transform: scale(1.1) rotate(360deg);
+                    -ms-transform: scale(1.1) rotate(360deg);
+                    -o-transform: scale(1.1) rotate(360deg);
+                    background-color: #28B78D;
+                    color: #243743
+                }
+
+    /* If you don't want the footer to be responsive, remove these media queries */
+
+    @@media (max-width: 880px) {
+
+        .footer-distributed {
+            font: bold 14px sans-serif;
+        }
+
+            .footer-distributed .footer-left,
+            .footer-distributed .footer-center,
+            .footer-distributed .footer-right {
+                display: block;
+                width: 100%;
+                margin-bottom: 40px;
+                text-align: center;
+            }
+
+                .footer-distributed .footer-center i {
+                    margin-left: 0;
+                }
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #58bd91;
+    }
+</style>
+
+<link href="https://fonts.googleapis.com/css?family=Fresca" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+@foreach (CorporateProfile profile in Model)
+{
+    <div class="jumbotron text-center">
+        <h1>@profile.Name</h1>
+        <p>Let our years of expertise help you get back on track.</p>
+
+    </div>
+
+    <div class="container-fluid" style="font-family: 'Roboto', sans-serif;font-size:larger">
+        <div class="col-sm-12">
+            <div class="col-sm-6 container" style="text-align:center">
+                <h1 style="padding-top:60px">
+                    Services
+                </h1>
+                <p>@profile.Services</p>
+                <h1>
+                    Definition
+                </h1>
+                <p>@profile.Defination</p>
+                <h1>
+                    About Us
+                </h1>
+                <p>@profile.AboutUs</p>
+                <h1>
+                    Vision
+                </h1>
+                <p>@profile.Vision</p>
+
+
+
+
+            </div>
+            <div class="col-sm-6 container">
+                <h1 style="padding-bottom:30px;text-align:center">Locate Us</h1>
+                <div id="googleMap" style="height:600px;"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function myMap() {
+            var address = '@profile.Address';
+
+            var map = new google.maps.Map(document.getElementById('googleMap'), {
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                zoom: 17,
+                scrollwheel: false,
+
+
+            });
+
+            var geocoder = new google.maps.Geocoder();
+
+            geocoder.geocode({
+                'address': address
+            },
+            function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    new google.maps.Marker({
+                        position: results[0].geometry.location,
+                        map: map,
+                        animation: google.maps.Animation.BOUNCE
+                    });
+                    map.setCenter(results[0].geometry.location);
+                }
+            });
+        }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCqxA_5pYxQS4nGTjVm8_ZFSqV0KRk7HqM&callback=myMap"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
+
+
+        <footer class="footer-distributed">
+            <div class="container">
+                <div class="footer-left">
+                    @*<h3>Aptive<span> Physiotherapy</span></h3>*@
+                    <img src="~/images/AptiveLogo.png" width="300" height="100" />
+
+                    <p class="footer-company-name" style="padding-top:10px">@profile.Name &copy;</p>
+                </div>
+
+                <div class="footer-center">
+                    <div>
+                        <i class="fa fa-map-marker"></i>
+                        <p><span>@profile.Address</span> Singapore</p>
+                    </div>
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <a href="tel:@profile.Contact" data-toggle="tooltip" title="@profile.Contact">+65 @profile.Contact</a>
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <a href="mailto:@profile.Email" data-toggle="tooltip" title="@profile.Email">@profile.Email</a>
+                    </div>
+                </div>
+                <div class="footer-right">
+                    <p class="footer-company-about" style="color:white !important">
+                        <h3>About the company</h3>
+                        @profile.AboutUs
+                    </p>
+
+                    <div class="footer-icons">
+                        @if (profile.Fblink != null)
+                        {
+
+                            <a href="@profile.Fblink" target="_blank"><i class="fa fa-facebook"></i></a>
+                        }
+                        @if (profile.Twitlink != null)
+                        {
+                            <a href="@profile.Twitlink" target="_blank"><i class="fa fa-twitter"></i></a>
+
+                        }
+                        @if (profile.Linkinlink != null)
+                        {
+                            <a href="@profile.Linkinlink" target="_blank"><i class="fa fa-linkedin"></i></a>
+
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+}
